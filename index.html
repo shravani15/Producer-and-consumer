@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bakery Shelf: Producer–Consumer Simulation</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<main>
+
+<h1>🍞 Bakery Shelf Simulation</h1>
+
+<p class="sub">
+    A baker (producer) puts bread on a shelf. A customer (consumer)
+    takes it. Semaphores are counters that tell each one when to wait.
+</p>
+
+<div class="card bar">
+    <button id="run">Start</button>
+    <button id="step" class="g">Step</button>
+    <button id="reset" class="g">Reset</button>
+
+    <label>
+        Shelf size: <b id="oN">4</b>
+        <input id="N" type="range" min="1" max="8" value="4">
+    </label>
+
+    <label>
+        Baker is slow ← → fast: <b id="oB">5</b>
+        <input id="B" type="range" min="1" max="6" value="5">
+    </label>
+
+    <label>
+        Customer is slow ← → fast: <b id="oC">2</b>
+        <input id="C" type="range" min="1" max="6" value="2">
+    </label>
+
+    <label>
+        Speed: <b id="oS">3</b>
+        <input id="S" type="range" min="1" max="8" value="3">
+    </label>
+</div>
+
+<div class="card">
+    <h2>What is happening right now?</h2>
+    <div id="story"></div>
+</div>
+
+<div class="card">
+    <div class="scene">
+
+        <div class="who b" id="wb">
+            <div class="face" id="fb"></div>
+            <b>Baker</b>
+            <div class="say" id="sb"></div>
+        </div>
+
+        <div>
+            <div class="shelf" id="shelf"></div>
+            <div class="cap" id="cap"></div>
+        </div>
+
+        <div class="who c" id="wc">
+            <div class="face" id="fc"></div>
+            <b>Customer</b>
+            <div class="say" id="sc"></div>
+        </div>
+
+    </div>
+</div>
+
+<div class="card">
+    <h2>The Three Counters (Semaphores)</h2>
+
+    <div class="sems">
+        <div class="sem">
+            <b>empty</b>
+            <div class="v" id="vE"></div>
+            <small>Free spots on the shelf</small>
+        </div>
+
+        <div class="sem">
+            <b>full</b>
+            <div class="v" id="vF"></div>
+            <small>Loaves on the shelf</small>
+        </div>
+
+        <div class="sem">
+            <b>mutex</b>
+            <div class="v" id="vM"></div>
+            <small>1 = shelf free, 0 = someone using it</small>
+        </div>
+    </div>
+</div>
+
+<div class="card code">
+    <div>
+        <h2>Baker's Steps</h2>
+        <pre id="cb"></pre>
+    </div>
+
+    <div>
+        <h2>Customer's Steps</h2>
+        <pre id="cc"></pre>
+    </div>
+</div>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
